@@ -26,5 +26,3 @@ const newFunc = outer()
 newFunc(3)
 newFunc(4)
 outer()
-
-//closure
