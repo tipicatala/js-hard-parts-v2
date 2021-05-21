@@ -8,7 +8,6 @@ function createFunction () {
 }
 
 const generated = createFunction()
-// console.log(generated(3))
 
 //memorization
 function outer(){
@@ -27,3 +26,5 @@ const newFunc = outer()
 newFunc(3)
 newFunc(4)
 outer()
+
+//closure
