@@ -96,3 +96,42 @@ const afterCalled = after(3, called);
 // afterCalled(); // => nothing is printed
 // afterCalled(); // => nothing is printed
 // afterCalled(); // => 'hello' is printed
+
+// CHALLENGE 7
+function rollCall(names) {
+  let count = 0
+  
+  function func() {
+    console.log(names[count] || 'Everyone accounted for')
+    count++
+  }
+  
+  return func
+}
+
+const rollCaller = rollCall(['Victoria', 'Juan', 'Ruth'])
+// rollCaller() // => should log 'Victoria'
+// rollCaller() // => should log 'Juan'
+// rollCaller() // => should log 'Ruth'
+// rollCaller() // => should log 'Everyone accounted for'
+
+
+// CHALLENGE 8
+function saveOutput(func, magicWord) {
+  const obj = {}
+  
+  function funcWithPassword(arg){
+    if (arg !== magicWord){
+      obj[arg]= func(arg)
+      return func(arg)
+    } return obj
+  }
+  
+  return funcWithPassword
+}
+
+const multiplyBy2 = function(num) { return num * 2; };
+const multBy2AndLog = saveOutput(multiplyBy2, 'boo');
+console.log(multBy2AndLog(2)); // => should log 4
+console.log(multBy2AndLog(9)); // => should log 18
+console.log(multBy2AndLog('boo')); // => should log { 2: 4, 9: 18 }
