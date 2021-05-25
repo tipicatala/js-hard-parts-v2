@@ -64,3 +64,31 @@ function promised() {
 }
 const createPromise = promised();
 // createPromise.then(() => console.log('wait for it...')); 
+
+
+/* CHALLENGE 10 */
+const debounce = (callback, interval) => {
+  let timerStart = new Date().getTime();
+  let isFirstTime = true
+  
+  return () => {
+    if (isFirstTime) {
+      isFirstTime = false
+      return callback()
+    }
+    
+    const invocationTime = new Date().getTime();    
+    if (invocationTime - timerStart > interval) {
+      timerStart = new Date().getTime();
+      return callback();
+    }
+    timerStart = new Date().getTime();
+  };
+};
+
+// function giveHi() { return 'hi'; }
+// const giveHiSometimes = debounce(giveHi, 3000);
+// console.log(giveHiSometimes()); // -> 'hi'
+// setTimeout(function() { console.log(giveHiSometimes()); }, 2000); // -> undefined
+// setTimeout(function() { console.log(giveHiSometimes()); }, 4000); // -> undefined
+// setTimeout(function() { console.log(giveHiSometimes()); }, 8000); // -> 'hi'
